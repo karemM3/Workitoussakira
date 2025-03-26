@@ -3,10 +3,10 @@ name: Code Improvement & Deployment Workflow
 on:
   push:
     branches:
-      - main
+      - master  # تم تغيير من main إلى master
   pull_request:
     branches:
-      - main
+      - master  # تم تغيير من main إلى master
 
 jobs:
   # 1. Code Improvement (Optional depending on your project setup)
@@ -22,7 +22,7 @@ jobs:
 
       - name: Run linting (check the code)
         run: |
-          npm run lint   # Or use the tool you're working with
+          npm run lint   # أو استخدم الأداة المناسبة
 
   # 2. Check for 404 Errors
   check_404:
@@ -44,7 +44,7 @@ jobs:
         
       - name: Run UI test for buttons
         run: |
-          npm run test-ui   # Customize this according to the tool you're using
+          npm run test-ui   # تخصيص وفقًا للأداة التي تستخدمها
 
   # 4. Add Messenger that matches the design
   add_messenger:
@@ -55,7 +55,7 @@ jobs:
         
       - name: Create Messenger Component
         run: |
-          echo "Add Messenger Component"  # Write your actual code here to add Messenger
+          echo "Add Messenger Component"  # ضع الكود الفعلي هنا لإنشاء Messenger
 
   # 5. Database integration (MongoDB Atlas)
   database_integration:
@@ -92,7 +92,7 @@ jobs:
         
       - name: Run automatic error fix
         run: |
-          npm run fix   # If you're using Node.js or a similar tool
+          npm run fix   # إذا كنت تستخدم Node.js أو أداة مشابهة
 
   # 8. Deployment to Any Hosting (without Heroku)
   deploy_hosting:
@@ -103,6 +103,6 @@ jobs:
         
       - name: Deploy to Hosting (Custom)
         run: |
-          # Deploy the app to your hosting provider, e.g., Netlify, Vercel, etc.
-          # Example command for Vercel:
+          # نشر التطبيق إلى مزود الاستضافة، مثل Netlify، Vercel، إلخ.
+          # مثال على الأمر لـ Vercel:
           vercel --prod
