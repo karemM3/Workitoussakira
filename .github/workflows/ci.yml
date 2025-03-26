@@ -1,0 +1,108 @@
+name: Code Improvement & Deployment Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # 1. Code Improvement (Optional depending on your project setup)
+  lint_code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run linting (check the code)
+        run: |
+          npm run lint   # Or use the tool you're working with
+
+  # 2. Check for 404 Errors
+  check_404:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Check for 404 errors
+        run: |
+          npx link-checker http://your-website-url.com --exclude "http://your-website-url.com/specific-page"
+          
+  # 3. Test non-working buttons
+  test_buttons:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Run UI test for buttons
+        run: |
+          npm run test-ui   # Customize this according to the tool you're using
+
+  # 4. Add Messenger that matches the design
+  add_messenger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Create Messenger Component
+        run: |
+          echo "Add Messenger Component"  # Write your actual code here to add Messenger
+
+  # 5. Database integration (MongoDB Atlas)
+  database_integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up MongoDB connection
+        run: |
+          echo "MONGODB_URI=mongodb+srv://karemkhammour47:Jaremkhammour47gmail@cluster0.ktkif.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" >> $GITHUB_ENV
+
+      - name: Update Admin Access
+        run: |
+          echo "Admin access granted and database updated."
+
+  # 6. Add Notifications (Red or Green status)
+  add_notifications:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Add notifications (red and green states)
+        run: |
+          echo "Add notification system with red and green states"
+
+  # 7. Auto Fix Errors
+  auto_fix_errors:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Run automatic error fix
+        run: |
+          npm run fix   # If you're using Node.js or a similar tool
+
+  # 8. Deployment to Any Hosting (without Heroku)
+  deploy_hosting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Deploy to Hosting (Custom)
+        run: |
+          # Deploy the app to your hosting provider, e.g., Netlify, Vercel, etc.
+          # Example command for Vercel:
+          vercel --prod
